@@ -1,7 +1,8 @@
 import React from 'react';
 import {Button, Grid, Navbar, Nav, NavItem, Row, Col, PageHeader, Jumbotron} from 'react-bootstrap';
-
 import {IndexLinkContainer, LinkContainer} from 'react-router-bootstrap';
+
+import SensorChart from './SensorChart';
 
 import './css/bootstrap.min.css';
 import './App.css';
@@ -23,8 +24,41 @@ class About extends React.Component {
 
 class SensorList extends React.Component {
 
-  render(){
-    return (<PageHeader>Your Sensors</PageHeader>);
+   constructor() {
+    super();
+
+    this.state = {
+      user: null,
+      observations: [
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
+      ],
+    };
+
+    let startTime = new Date();
+    this.state.observations.map( (obs, i) => {
+      const time = new Date();
+      time.setMinutes(startTime.getMinutes() + i);
+      obs.timestamp = time;
+      return obs;
+    });
+
+  }
+
+  render() {
+    return (
+      <PageHeader>Your Sensors</PageHeader>
+
+
+    );
   }
 }
 
@@ -67,18 +101,7 @@ class Brand extends React.Component {
 
 class App extends React.Component {
 
-/*
-   constructor() {
-    super();
-
-    this.state = {
-      user: null,
-      observations: [{temperature: 10, humidity:20, irradiance: 0.002}],
-    };
-
-  }
-*/
-  render() {
+ render() {
     return (
       <div>
         <Navbar inverse>
