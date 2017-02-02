@@ -1,0 +1,44 @@
+.navbar.navbar-inverse{
+  border: 0 solid transparent;
+}
+
+.jumbo-splash{
+  margin-top: 50px;
+  background: url('./image/jumbo-splash.jpg');
+  background-size: cover;
+}
+
+.jumbotron.jumbo-splash > p {
+  width: 60%;
+}
+
+.jumbotron.jumbo-splash > h1, .jumbotron.jumbo-splash > p {
+  color: white;
+  text-shadow:
+    -1px 0px 0 #000,
+    1px 0px 0 #000,
+    0px  -1px 0 #000,
+    0px  1px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+}
+
+a.navbar-brand.active {
+  color: white;
+}
+
+img.gplaybadge {
+  margin-top: -16px;
+  margin-bottom: -16px;
+  margin-right: -8px;
+  margin-left: -8px;
+  height: 48px;
+}
+
+img.astorebadge {
+  margin-top: -8px;
+  margin-bottom: -8px;
+  height: 32px;
+}
