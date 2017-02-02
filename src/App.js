@@ -11,7 +11,7 @@ import astore from './image/apple-store-badge.svg';
 
 class Login extends React.Component {
   render(){
-    return (<PageHeader> Login </PageHeader>);
+    return (<PageHeader> Sign Up / Register </PageHeader>);
   }
 }
 
@@ -131,7 +131,7 @@ class App extends React.Component {
               <img className="astorebadge" src={astore} alt="apple store" />
             </NavItem>
             <LinkContainer to={{pathname: '/login'}}>
-              <NavItem className="login" eventKey={3} href="">Login</NavItem>
+              <NavItem className="login" eventKey={3} href="">Sign In / Register</NavItem>
             </LinkContainer>
           </Nav>
         </Navbar>
