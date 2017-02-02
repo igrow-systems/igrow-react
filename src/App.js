@@ -29,35 +29,71 @@ class SensorList extends React.Component {
 
     this.state = {
       user: null,
-      observations: [
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-        {timestamp: null, temp: 10, humidity:20, irradiance: 0.002},
-      ],
+      sensors: [
+
+      {
+        id: "123456",
+        name: "Sensor One",
+        observations: [
+          {timestamp: null, temp: 5, humidity:70, irradiance: 0.002},
+          {timestamp: null, temp: 8, humidity:72, irradiance: 0.002},
+          {timestamp: null, temp: 5, humidity:90, irradiance: 0.002},
+          {timestamp: null, temp: 2, humidity:61, irradiance: 0.002},
+          {timestamp: null, temp: 4, humidity:62, irradiance: 0.002},
+          {timestamp: null, temp: 9, humidity:76, irradiance: 0.002},
+          {timestamp: null, temp: 1, humidity:98, irradiance: 0.002},
+          {timestamp: null, temp: 1, humidity:78, irradiance: 0.002},
+          {timestamp: null, temp: 2, humidity:72, irradiance: 0.002},
+          {timestamp: null, temp: 3, humidity:20, irradiance: 0.002},
+        ],
+      },{
+        id: "123457",
+        name: "Sensor Two",
+        observations: [
+          {timestamp: null, temp: 2, humidity:22, irradiance: 0.004},
+          {timestamp: null, temp: 9, humidity:22, irradiance: 0.022},
+          {timestamp: null, temp: 3, humidity:29, irradiance: 0.0032},
+          {timestamp: null, temp: 2, humidity:22, irradiance: 0.02},
+          {timestamp: null, temp: 15, humidity:20, irradiance: 0.08},
+          {timestamp: null, temp: 9, humidity:20, irradiance: 0.009},
+          {timestamp: null, temp: 8, humidity:20, irradiance: 0.002},
+          {timestamp: null, temp: 4, humidity:20, irradiance: 0.0082},
+          {timestamp: null, temp: 7, humidity:20, irradiance: 0.009},
+          {timestamp: null, temp: 11, humidity:20, irradiance: 0.001},
+        ],
+      },]
+
     };
 
     let startTime = new Date();
-    this.state.observations.map( (obs, i) => {
-      const time = new Date();
-      time.setMinutes(startTime.getMinutes() + i);
-      obs.timestamp = time;
-      return obs;
-    });
+    this.state.sensors.map((sensor) =>  {
 
+      sensor.observations.map( (obs, i) => {
+        const time = new Date();
+        time.setMinutes(startTime.getMinutes() + i);
+        obs.timestamp = time;
+        return obs;
+      });
+      return sensor;
+    });
   }
+
 
   render() {
     return (
+    <div>
       <PageHeader>Your Sensors</PageHeader>
-
-
+      {this.state.sensors.map( (sensor, i) => {
+        return (
+          <Row key={i}>
+            <Col>
+              <h2> {sensor.name} </h2>
+              <SensorChart data={sensor.observations} />
+            </Col>
+          </Row>
+        );
+      })}
+    </div>
     );
   }
 }
