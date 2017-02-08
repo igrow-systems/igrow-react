@@ -2,12 +2,58 @@ import React from 'react';
 import {Button, Grid, Navbar, Nav, NavItem, Row, Col, PageHeader, Jumbotron} from 'react-bootstrap';
 import {IndexLinkContainer, LinkContainer} from 'react-router-bootstrap';
 
+import * as pbRoot from './igrow-protobuf.js';
+
 import SensorChart from './SensorChart';
 
 import './css/bootstrap.min.css';
 import './App.css';
 import gplay from './image/google-play-badge.png';
 import astore from './image/apple-store-badge.svg';
+
+//pbRoot.default.com.argusat.gjl
+const Device = pbRoot.default.com.argusat.gjl.locator.Device;
+const FLDReq = pbRoot.default.com.argusat.gjl.locator.FindLocalDevicesRequest;
+const Location = pbRoot.default.com.argusat.gjl.observation.Location;
+const FLDResp = pbRoot.default.com.argusat.gjl.locator.FindLocalDevicesResponse;
+
+let myLoc = Location.create({
+  latitude: 50939965,
+  longitude: -1415058,
+  altitude: 0,
+  HDOP: 0,
+  VDOP: 0
+});
+
+let findLocal = FLDReq.create({
+  centre: myLoc,
+  radius: 2010,
+  limit: 8,
+});
+
+let xhr = new XMLHttpRequest();
+
+xhr.onload = function (evt) {
+  console.log(FLDResp.decode(xhr.response));
+}
+
+xhr.open(
+  "POST",
+  "http://www.igrow-systems.com:9997/devices/local",
+  true
+);
+
+xhr.setRequestHeader("Content-type", "application/octet-stream");
+xhr.responseType = "arraybuffer";
+xhr.send(FLDReq.encode(findLocal).finish());
+
+
+/*let myDevice = Device.create({
+    deviceId: '123',
+    osType: 2,
+
+  });*/
+//Device.verify(myDevice);
 
 class Login extends React.Component {
   render(){
